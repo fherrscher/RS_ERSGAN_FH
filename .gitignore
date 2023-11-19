@@ -1,0 +1,9 @@
+**/*.png
+**/*.jpg
+**/*.tif
+**/*.tar
+**/*.pth
+runs/
+__pycache__/
+checkpoints/
+data/

@@ -1,0 +1,8 @@
+albumentations
+Pillow
+torch
+tqdm
+torchvision
+numpy
+tensorboard
+rasterio
