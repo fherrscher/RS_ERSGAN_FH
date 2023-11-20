@@ -3,7 +3,14 @@
 **/*.tif
 **/*.tar
 **/*.pth
+**/*.jp2
+**/*.xml
+**/*.zip
+
 runs/
 __pycache__/
 checkpoints/
 data/
+
+
+!test_images/test.tif

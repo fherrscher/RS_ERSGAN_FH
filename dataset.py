@@ -25,14 +25,6 @@ class MyImageFolder(Dataset):
         img_file, label = self.data[index]
         root_and_dir = os.path.join(self.root_dir, self.class_names[label])
 
-        # image = cv2.imread(os.path.join(root_and_dir, img_file))
-        # print(image.shape)
-
-        # from geotiff import GeoTiff
-        # imm = GeoTiff(os.path.join(root_and_dir, img_file))
-
-        # image = np.array(imm.read())
-
         original = rio.open(os.path.join(root_and_dir, img_file))
         image = np.array(original.read())
         image = np.transpose(image, (1, 2, 0))

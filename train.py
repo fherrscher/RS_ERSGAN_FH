@@ -82,7 +82,7 @@ def train_fn(
         writer.add_scalar('L1 Loss', l1_loss.item(), global_step=epoch)
         writer.add_scalar('GP', gp.item(), global_step=epoch)
 
-        if epoch % config.PLOT_EPOCHS == 0:
+        if epoch % config.SAVE_EPOCHS == 0:
             writer.add_image('Image Plot', plot_tensorboard(gen), global_step=epoch, dataformats='NCHW')
         writer.flush()
 
@@ -143,7 +143,7 @@ def main():
             total_epoch,
         )
 
-        if config.SAVE_MODEL:
+        if config.SAVE_MODEL and total_epoch % config.SAVE_EPOCHS == 0:
             save_checkpoint(gen, opt_gen, total_epoch,filename=config.CHECKPOINT_GEN)
             save_checkpoint(disc, opt_disc, total_epoch, filename=config.CHECKPOINT_DISC)
 

@@ -5,7 +5,7 @@ from albumentations.pytorch import ToTensorV2
 
 LOAD_MODEL = True
 SAVE_MODEL = True
-INPUT_DIR = "data_copy/"
+INPUT_DIR = "data/"
 CHECKPOINT_GEN = "checkpoints/gen.pth"
 CHECKPOINT_DISC = "checkpoints/disc.pth"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -19,9 +19,9 @@ HIGH_RES = 128
 LOW_RES = HIGH_RES // SCALING_FACTOR
 
 USE_TENSORBOARD = True # Set to True to use tensorboard
-TB_LOG_DIR = "runs/mnist/test" # Tensorboard log dir
-PLOT_EPOCHS = 1 # Every X epochs plot the examples
-EXAMPLE_IMAGE = "test_images/c4328.tif" # Example image for Tensorboard
+TB_LOG_DIR = "runs/mnist/name" # Tensorboard log dir
+SAVE_EPOCHS = 10 # Every X epochs plot the examples and save the model
+EXAMPLE_IMAGE = "test_images/test.tif" # Example image for Tensorboard
 
 
 highres_transform = A.Compose(

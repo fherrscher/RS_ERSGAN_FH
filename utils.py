@@ -108,5 +108,5 @@ def plot_tensorboard(gen):
     
     new_tensor = upscaled_img[:, :3, :, :]
 
-    return new_tensor * 2
+    return new_tensor
   
