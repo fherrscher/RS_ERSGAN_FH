@@ -107,6 +107,9 @@ def plot_tensorboard(gen):
     gen.train()
     
     new_tensor = upscaled_img[:, :3, :, :]
+    image_array = new_tensor.squeeze().cpu().numpy()
 
-    return new_tensor
+    normalized_array = (image_array - np.min(image_array)) / (np.max(image_array) - np.min(image_array))
+
+    return normalized_array
   

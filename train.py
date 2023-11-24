@@ -83,7 +83,7 @@ def train_fn(
         writer.add_scalar('GP', gp.item(), global_step=epoch)
 
         if epoch % config.SAVE_EPOCHS == 0:
-            writer.add_image('Image Plot', plot_tensorboard(gen), global_step=epoch, dataformats='NCHW')
+            writer.add_image('Image Plot', plot_tensorboard(gen), global_step=epoch, dataformats='CHW')
         writer.flush()
 
 

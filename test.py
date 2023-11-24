@@ -7,7 +7,7 @@ from model import Generator
 torch.backends.cudnn.benchmark = True
 
 
-image_path = "test_images/test.tif"
+image_path = "test_images/Clip4328.tif"
 
 
 gen = Generator(in_channels=4).to(config.DEVICE)
