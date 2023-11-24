@@ -7,6 +7,8 @@ import numpy as np
 import config
 import rasterio as rio
 
+## neue version mit eigenen Patches
+
 class MyImageFolder(Dataset):
     def __init__(self, root_dir):
         super(MyImageFolder, self).__init__()
