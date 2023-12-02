@@ -27,18 +27,22 @@ class MyImageFolder(Dataset):
         img_file, label = self.data[index]
         root_and_dir = os.path.join(self.root_dir, self.class_names[label])
 
-        original = rio.open(os.path.join(root_and_dir, img_file))
-        image = np.array(original.read())
-        image = np.transpose(image, (1, 2, 0))
+        original_hr = rio.open(os.path.join(root_and_dir, img_file))
+        image_hr = np.array(original_hr.read())
+        image_hr = np.transpose(image_hr, (1, 2, 0))
 
-        both_transform = config.both_transforms(image=image)["image"]
-        low_res = config.lowres_transform(image=both_transform)["image"]
-        high_res = config.highres_transform(image=both_transform)["image"]
+        original_lr = rio.open(os.path.join("data_lr_patches", "lr", img_file))
+        image_lr = np.array(original_lr.read())
+        image_lr = np.transpose(image_lr, (1, 2, 0))
+
+
+        low_res = config.both_transforms(image=image_lr)["image"]
+        high_res = config.both_transforms(image=image_hr)["image"]
         return low_res, high_res
 
 
 def test():
-    dataset = MyImageFolder(root_dir="data_copy")
+    dataset = MyImageFolder(root_dir="data_patches")
     loader = DataLoader(dataset, batch_size=8)
 
     for low_res, high_res in loader:
