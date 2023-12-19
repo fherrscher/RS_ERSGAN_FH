@@ -8,11 +8,10 @@ SAVE_MODEL = True
 INPUT_DIR = "data/"
 CHECKPOINT_GEN = "checkpoints/gen.pth"
 CHECKPOINT_DISC = "checkpoints/disc.pth"
-#DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-DEVICE = "cpu"
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 LEARNING_RATE = 1e-4
-NUM_EPOCHS = 10000
-BATCH_SIZE = 32
+NUM_EPOCHS = 1000
+BATCH_SIZE = 16
 LAMBDA_GP = 10
 NUM_WORKERS = 4
 SCALING_FACTOR = 4
@@ -20,7 +19,7 @@ HIGH_RES = 128
 LOW_RES = HIGH_RES // SCALING_FACTOR
 
 USE_TENSORBOARD = True # Set to True to use tensorboard
-TB_LOG_DIR = "runs/mnist/loc_02" # Tensorboard log dir
+TB_LOG_DIR = "runs/mnist/loc_99" # Tensorboard log dir
 SAVE_EPOCHS = 10 # Every X epochs plot the examples and save the model
 EXAMPLE_IMAGE = "test_images/test.tif" # Example image for Tensorboard
 
