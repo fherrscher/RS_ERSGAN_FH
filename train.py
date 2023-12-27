@@ -127,7 +127,7 @@ def main():
         epoch_count = load_epoch(config.CHECKPOINT_GEN, epoch_count)
 
 
-    for epoch in range(config.NUM_EPOCHS) - epoch_count:
+    for epoch in range(epoch_count, config.NUM_EPOCHS):
         total_epoch = epoch + epoch_count + 1
         print("Epoch: ", total_epoch)
         train_fn(
