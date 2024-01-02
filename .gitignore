@@ -7,7 +7,6 @@
 **/*.xml
 **/*.zip
 
-runs/
 __pycache__/
 
 
