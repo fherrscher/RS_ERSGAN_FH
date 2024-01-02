@@ -15,17 +15,17 @@ class MyImageFolder(Dataset):
         self.class_names = os.listdir(root_dir)
 
         for index, name in enumerate(self.class_names):
-            files = os.listdir(os.path.join(root_dir, name))
-            self.data += list(zip(files, [index] * len(files)))
+            self.data.append((name, index))
 
     def __len__(self):
         return len(self.data)
 
     def __getitem__(self, index):
         img_file, label = self.data[index]
-        root_and_dir = os.path.join(self.root_dir, self.class_names[label])
 
-        original = rio.open(os.path.join(root_and_dir, img_file))
+        img_path = os.path.join(self.root_dir, img_file)
+
+        original = rio.open(img_path)
         image = np.array(original.read())
         image = np.transpose(image, (1, 2, 0))
 
@@ -34,15 +34,13 @@ class MyImageFolder(Dataset):
         high_res = config.highres_transform(image=both_transform)["image"]
         return low_res, high_res
 
-
 def test():
-    dataset = MyImageFolder(root_dir="data_copy")
+    dataset = MyImageFolder(root_dir="data")
     loader = DataLoader(dataset, batch_size=8)
 
     for low_res, high_res in loader:
         print(low_res.shape)
         print(high_res.shape)
-
 
 if __name__ == "__main__":
     test()

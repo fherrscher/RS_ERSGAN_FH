@@ -52,7 +52,7 @@ def train_fn(
 
         # Train Generator: min log(1 - D(G(z))) <-> max log(D(G(z))
         with torch.cuda.amp.autocast():
-            l1_loss = 1e-2 * l1(fake, high_res)
+            l1_loss = 1e-2 * l1(fake, high_res) 
             adversarial_loss = 5e-3 * -torch.mean(disc(fake))
 
             fake_vgg = torch.narrow(fake, 1, 0, 3) # vgg works only with 3 channels
@@ -127,9 +127,8 @@ def main():
         epoch_count = load_epoch(config.CHECKPOINT_GEN, epoch_count)
 
 
-    for epoch in range(epoch_count, config.NUM_EPOCHS):
-        total_epoch = epoch + epoch_count + 1
-        print("Epoch: ", total_epoch)
+    for epoch in range(epoch_count + 1, config.NUM_EPOCHS + 1):
+        print("Epoch: ", epoch)
         train_fn(
             loader,
             disc,
@@ -140,12 +139,12 @@ def main():
             vgg_loss,
             g_scaler,
             d_scaler,
-            total_epoch,
+            epoch,
         )
 
-        if config.SAVE_MODEL and total_epoch % config.SAVE_EPOCHS == 0:
-            save_checkpoint(gen, opt_gen, total_epoch,filename=config.CHECKPOINT_GEN)
-            save_checkpoint(disc, opt_disc, total_epoch, filename=config.CHECKPOINT_DISC)
+        if config.SAVE_MODEL and epoch % config.SAVE_EPOCHS == 0:
+            save_checkpoint(gen, opt_gen, epoch,filename=config.CHECKPOINT_GEN)
+            save_checkpoint(disc, opt_disc, epoch, filename=config.CHECKPOINT_DISC)
 
 
 if __name__ == "__main__":

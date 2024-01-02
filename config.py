@@ -3,7 +3,7 @@ from PIL import Image
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
-LOAD_MODEL = True
+LOAD_MODEL = False
 SAVE_MODEL = True
 INPUT_DIR = "data/"
 CHECKPOINT_GEN = "checkpoints/gen.pth"
@@ -19,7 +19,7 @@ HIGH_RES = 128
 LOW_RES = HIGH_RES // SCALING_FACTOR
 
 USE_TENSORBOARD = True # Set to True to use tensorboard
-TB_LOG_DIR = "runs/mnist/loc_99" # Tensorboard log dir
+TB_LOG_DIR = "runs/loc_s2_batches" # Tensorboard log dir
 SAVE_EPOCHS = 10 # Every X epochs plot the examples and save the model
 EXAMPLE_IMAGE = "test_images/test.tif" # Example image for Tensorboard
 
